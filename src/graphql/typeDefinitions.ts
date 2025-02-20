@@ -11,6 +11,7 @@ export const typeDefs = /* GraphQL */ `
   type Mutation {
     createSomething(input: CreateSomethingInput!): Something!
     createTodo(input: CreateTodoInput!): Todo!
+    updateCompleteTodo(input: UpdateTodoInput!): Todo!
   }
 
   type Query {
@@ -27,5 +28,9 @@ export const typeDefs = /* GraphQL */ `
 
   input CreateTodoInput {
     title: String!
+  }
+
+  input UpdateTodoInput {
+    id: String!
   }
 `;
