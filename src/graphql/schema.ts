@@ -25,7 +25,11 @@ const yoga = createYoga({
   landingPage: false,
   logging: true,
   plugins: [
+    // explanation: default behavior of the project
+    // eslint-disable-next-line @typescript-eslint/require-await
     useExtendContext(async (ctx) => {
+      // explanation: default behavior of the project
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return {
         ...ctx,
         prisma: prisma,
