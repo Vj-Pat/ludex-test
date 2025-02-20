@@ -14,6 +14,7 @@ export const Mutation: IMutation<Context> = {
       name: something.name,
     };
   },
+  // Creates a new todo, with the current date
   createTodo: async (_, { input }, { prisma }) => {
     const todo = await prisma.todo.create({
       data: {
@@ -29,6 +30,8 @@ export const Mutation: IMutation<Context> = {
       updatedAt: todo.updatedAt.toDateString(),
     };
   },
+  //Updates a todo, to set its status from completed to uncompleted
+  // and vice versa (true -> false, false -> true)
   updateCompleteTodo: async (_, { input }, { prisma }) => {
     const findTodo = await prisma.todo.findFirst({
       where: {id: input.id},
