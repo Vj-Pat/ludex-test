@@ -12,6 +12,7 @@ CREATE TABLE "Something" (
 CREATE TABLE "Todo" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
+    "due" TIMESTAMP(3),
     "completed" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,

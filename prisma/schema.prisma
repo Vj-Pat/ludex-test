@@ -20,6 +20,7 @@ model Something {
 model Todo {
   id        String   @id @default(uuid())
   title     String
+  due       DateTime? 
   completed Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
