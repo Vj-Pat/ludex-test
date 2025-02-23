@@ -3,6 +3,7 @@ import { Context } from "./context";
 
 export const Query: IQuery<Context> = {
   hello: () => "world",
+  // Returns all Todos
   todos: async (_, __ ,{ prisma }) => {
     try{ 
       const todos = await prisma.todo.findMany();
@@ -18,6 +19,7 @@ export const Query: IQuery<Context> = {
       return [];
     } 
   },
+  // Returns only the incomplete todos
   incompleteTodos: async (_, __, { prisma }) => {
     try{
       const todos = await prisma.todo.findMany({
@@ -35,6 +37,7 @@ export const Query: IQuery<Context> = {
       return [];
     }
   },
+  // Returns only the complete Todos
   completeTodos: async (_, __, { prisma }) => {
     try{
       const todos = await prisma.todo.findMany({
@@ -52,6 +55,7 @@ export const Query: IQuery<Context> = {
       return [];
     }
   },
+  // Return a single Todo
   todo: async (_, { input }, { prisma }) => {
     try{
       const todo = await prisma.todo.findFirst({
