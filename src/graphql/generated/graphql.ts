@@ -28,6 +28,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   createSomething: Something;
   createTodo: Todo;
+  deleteTodo: Todo;
   updateCompleteTodo: Todo;
   updateTitleTodo: Todo;
 };
@@ -40,6 +41,11 @@ export type MutationCreateSomethingArgs = {
 
 export type MutationCreateTodoArgs = {
   input: TitleInput;
+};
+
+
+export type MutationDeleteTodoArgs = {
+  input: IdInput;
 };
 
 
@@ -186,6 +192,7 @@ export type ResolversParentTypes = {
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   createSomething?: Resolver<ResolversTypes['Something'], ParentType, ContextType, RequireFields<MutationCreateSomethingArgs, 'input'>>;
   createTodo?: Resolver<ResolversTypes['Todo'], ParentType, ContextType, RequireFields<MutationCreateTodoArgs, 'input'>>;
+  deleteTodo?: Resolver<ResolversTypes['Todo'], ParentType, ContextType, RequireFields<MutationDeleteTodoArgs, 'input'>>;
   updateCompleteTodo?: Resolver<ResolversTypes['Todo'], ParentType, ContextType, RequireFields<MutationUpdateCompleteTodoArgs, 'input'>>;
   updateTitleTodo?: Resolver<ResolversTypes['Todo'], ParentType, ContextType, RequireFields<MutationUpdateTitleTodoArgs, 'inputID' | 'inputTitle'>>;
 };

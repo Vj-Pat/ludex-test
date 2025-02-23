@@ -13,6 +13,7 @@ export const typeDefs = /* GraphQL */ `
     createTodo(input: TitleInput!): Todo!
     updateCompleteTodo(input: IdInput!): Todo!
     updateTitleTodo(inputID: IdInput!, inputTitle: TitleInput!): Todo!
+    deleteTodo(input: IdInput!): Todo!
   }
 
   type Query {
