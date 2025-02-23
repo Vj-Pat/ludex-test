@@ -22,6 +22,7 @@ export const typeDefs = /* GraphQL */ `
     incompleteTodos: [Todo]
     completeTodos(input: CreateDateInput): [Todo]
     todo(input: IdInput!): Todo
+    todoByPage(pages: Number, qty: Number): [Todo]
   }
 
   type Todo {
@@ -34,6 +35,10 @@ export const typeDefs = /* GraphQL */ `
 
   input CreateDateInput {
     date: String!
+  }
+
+  input Number {
+    amount: Int
   }
 
   input TitleInput { 

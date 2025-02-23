@@ -63,12 +63,17 @@ export type MutationUpdateTitleTodoArgs = {
   inputTitle: TitleInput;
 };
 
+export type Number = {
+  amount?: InputMaybe<Scalars['Int']['input']>;
+};
+
 export type Query = {
   __typename?: 'Query';
   completeTodos?: Maybe<Array<Maybe<Todo>>>;
   hello?: Maybe<Scalars['String']['output']>;
   incompleteTodos?: Maybe<Array<Maybe<Todo>>>;
   todo?: Maybe<Todo>;
+  todoByPage?: Maybe<Array<Maybe<Todo>>>;
   todos?: Maybe<Array<Maybe<Todo>>>;
 };
 
@@ -80,6 +85,12 @@ export type QueryCompleteTodosArgs = {
 
 export type QueryTodoArgs = {
   input: IdInput;
+};
+
+
+export type QueryTodoByPageArgs = {
+  pages?: InputMaybe<Number>;
+  qty?: InputMaybe<Number>;
 };
 
 export type Something = {
@@ -177,7 +188,9 @@ export type ResolversTypes = {
   CreateSomethingInput: CreateSomethingInput;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   IdInput: IdInput;
+  Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   Mutation: ResolverTypeWrapper<{}>;
+  Number: Number;
   Query: ResolverTypeWrapper<{}>;
   Something: ResolverTypeWrapper<Something>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
@@ -192,7 +205,9 @@ export type ResolversParentTypes = {
   CreateSomethingInput: CreateSomethingInput;
   ID: Scalars['ID']['output'];
   IdInput: IdInput;
+  Int: Scalars['Int']['output'];
   Mutation: {};
+  Number: Number;
   Query: {};
   Something: Something;
   String: Scalars['String']['output'];
@@ -213,6 +228,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   hello?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   incompleteTodos?: Resolver<Maybe<Array<Maybe<ResolversTypes['Todo']>>>, ParentType, ContextType>;
   todo?: Resolver<Maybe<ResolversTypes['Todo']>, ParentType, ContextType, RequireFields<QueryTodoArgs, 'input'>>;
+  todoByPage?: Resolver<Maybe<Array<Maybe<ResolversTypes['Todo']>>>, ParentType, ContextType, Partial<QueryTodoByPageArgs>>;
   todos?: Resolver<Maybe<Array<Maybe<ResolversTypes['Todo']>>>, ParentType, ContextType>;
 };
 

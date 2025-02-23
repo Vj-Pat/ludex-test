@@ -47,7 +47,7 @@ export const Query: IQuery<Context> = {
             completed: true,
             // To filter by date, use a value similar to this format
             // 2025-02-23T06:17:21.655Z (UTC date&time) 
-            createdAt: input? new Date(input.date) : undefined  
+            createdAt: input ? new Date(input.date) : undefined  
           }
         },
         orderBy: {createdAt: 'asc'}
@@ -80,6 +80,24 @@ export const Query: IQuery<Context> = {
     } catch (error) {
       console.error(error);
       return null;
+    }
+  },
+  todoByPage: async (_, { pages, qty }, { prisma }) => {
+    try{
+      const todos = await prisma.todo.findMany({
+        skip : pages && pages.amount ? pages.amount : undefined,
+        take : qty && qty.amount ? qty.amount: 10
+      });
+      return todos.length > 0 ? todos.map(todo => ({
+        id: todo.id,
+        title: todo.title,
+        completed: todo.completed,
+        createdAt: todo.createdAt.toDateString(),
+        updatedAt: todo.updatedAt ? todo.updatedAt.toDateString() : null,
+      })): [];
+    } catch (error) {
+      console.error(error);
+      return [];
     }
   },
 };
