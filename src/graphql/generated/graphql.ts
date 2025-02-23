@@ -55,7 +55,10 @@ export type MutationUpdateTitleTodoArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  completeTodos?: Maybe<Array<Maybe<Todo>>>;
   hello?: Maybe<Scalars['String']['output']>;
+  incompleteTodos?: Maybe<Array<Maybe<Todo>>>;
+  todos?: Maybe<Array<Maybe<Todo>>>;
 };
 
 export type Something = {
@@ -70,7 +73,7 @@ export type Todo = {
   createdAt: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   title: Scalars['String']['output'];
-  updatedAt: Scalars['String']['output'];
+  updatedAt?: Maybe<Scalars['String']['output']>;
 };
 
 export type UpdateTodoInput = {
@@ -182,7 +185,10 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  completeTodos?: Resolver<Maybe<Array<Maybe<ResolversTypes['Todo']>>>, ParentType, ContextType>;
   hello?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  incompleteTodos?: Resolver<Maybe<Array<Maybe<ResolversTypes['Todo']>>>, ParentType, ContextType>;
+  todos?: Resolver<Maybe<Array<Maybe<ResolversTypes['Todo']>>>, ParentType, ContextType>;
 };
 
 export type SomethingResolvers<ContextType = any, ParentType extends ResolversParentTypes['Something'] = ResolversParentTypes['Something']> = {
@@ -196,7 +202,7 @@ export type TodoResolvers<ContextType = any, ParentType extends ResolversParentT
   createdAt?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  updatedAt?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  updatedAt?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 

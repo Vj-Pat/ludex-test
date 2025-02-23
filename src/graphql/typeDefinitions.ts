@@ -18,6 +18,8 @@ export const typeDefs = /* GraphQL */ `
   type Query {
     hello: String
     todos: [Todo]
+    incompleteTodos: [Todo]
+    completeTodos: [Todo]
   }
 
   type Todo {
