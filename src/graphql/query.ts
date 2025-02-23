@@ -38,10 +38,19 @@ export const Query: IQuery<Context> = {
     }
   },
   // Returns only the complete Todos
-  completeTodos: async (_, __, { prisma }) => {
+  // If possible, sort by date
+  completeTodos: async (_, { input }, { prisma }) => {
     try{
       const todos = await prisma.todo.findMany({
-        where: {completed: true}
+        where: {
+          AND: {
+            completed: true,
+            // To filter by date, use a value similar to this format
+            // 2025-02-23T06:17:21.655Z (UTC date&time) 
+            createdAt: input? new Date(input.date) : undefined  
+          }
+        },
+        orderBy: {createdAt: 'asc'}
       });
       return todos.length > 0 ? todos.map(todo => ({
         id: todo.id,

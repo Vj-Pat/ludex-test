@@ -16,6 +16,10 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
+export type CreateDateInput = {
+  date: Scalars['String']['input'];
+};
+
 export type CreateSomethingInput = {
   name: Scalars['String']['input'];
 };
@@ -66,6 +70,11 @@ export type Query = {
   incompleteTodos?: Maybe<Array<Maybe<Todo>>>;
   todo?: Maybe<Todo>;
   todos?: Maybe<Array<Maybe<Todo>>>;
+};
+
+
+export type QueryCompleteTodosArgs = {
+  input?: InputMaybe<CreateDateInput>;
 };
 
 
@@ -164,6 +173,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
+  CreateDateInput: CreateDateInput;
   CreateSomethingInput: CreateSomethingInput;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   IdInput: IdInput;
@@ -178,6 +188,7 @@ export type ResolversTypes = {
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Boolean: Scalars['Boolean']['output'];
+  CreateDateInput: CreateDateInput;
   CreateSomethingInput: CreateSomethingInput;
   ID: Scalars['ID']['output'];
   IdInput: IdInput;
@@ -198,7 +209,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  completeTodos?: Resolver<Maybe<Array<Maybe<ResolversTypes['Todo']>>>, ParentType, ContextType>;
+  completeTodos?: Resolver<Maybe<Array<Maybe<ResolversTypes['Todo']>>>, ParentType, ContextType, Partial<QueryCompleteTodosArgs>>;
   hello?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   incompleteTodos?: Resolver<Maybe<Array<Maybe<ResolversTypes['Todo']>>>, ParentType, ContextType>;
   todo?: Resolver<Maybe<ResolversTypes['Todo']>, ParentType, ContextType, RequireFields<QueryTodoArgs, 'input'>>;

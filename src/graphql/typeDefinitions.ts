@@ -20,7 +20,7 @@ export const typeDefs = /* GraphQL */ `
     hello: String
     todos: [Todo]
     incompleteTodos: [Todo]
-    completeTodos: [Todo]
+    completeTodos(input: CreateDateInput): [Todo]
     todo(input: IdInput!): Todo
   }
 
@@ -30,6 +30,10 @@ export const typeDefs = /* GraphQL */ `
     completed: Boolean!
     createdAt: String!
     updatedAt: String
+  }
+
+  input CreateDateInput {
+    date: String!
   }
 
   input TitleInput { 
