@@ -44,6 +44,7 @@ export type MutationCreateSomethingArgs = {
 
 
 export type MutationCreateTodoArgs = {
+  due?: InputMaybe<Number>;
   input: TitleInput;
 };
 
@@ -107,6 +108,7 @@ export type Todo = {
   __typename?: 'Todo';
   completed: Scalars['Boolean']['output'];
   createdAt: Scalars['String']['output'];
+  due: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   title: Scalars['String']['output'];
   updatedAt?: Maybe<Scalars['String']['output']>;
@@ -241,6 +243,7 @@ export type SomethingResolvers<ContextType = any, ParentType extends ResolversPa
 export type TodoResolvers<ContextType = any, ParentType extends ResolversParentTypes['Todo'] = ResolversParentTypes['Todo']> = {
   completed?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  due?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   updatedAt?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;

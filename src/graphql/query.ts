@@ -11,8 +11,9 @@ export const Query: IQuery<Context> = {
         id: todo.id,
         title: todo.title,
         completed: todo.completed,
-        createdAt: todo.createdAt.toDateString(),
-        updatedAt: todo.updatedAt ? todo.updatedAt.toDateString() : null,
+        createdAt: todo.createdAt.toLocaleString(),
+        updatedAt: todo.updatedAt.toLocaleString(),
+        due: todo.due ? todo.due.toLocaleString() : "",
       })): [];
     } catch (error) {
       console.error(error);
@@ -29,8 +30,9 @@ export const Query: IQuery<Context> = {
         id: todo.id,
         title: todo.title,
         completed: todo.completed,
-        createdAt: todo.createdAt.toDateString(),
-        updatedAt: todo.updatedAt ? todo.updatedAt.toDateString() : null,
+        createdAt: todo.createdAt.toLocaleString(),
+        updatedAt: todo.updatedAt.toLocaleString(),
+        due: todo.due ? todo.due.toLocaleString() : "",
       })): [];
     } catch (error) {
       console.error(error);
@@ -56,8 +58,9 @@ export const Query: IQuery<Context> = {
         id: todo.id,
         title: todo.title,
         completed: todo.completed,
-        createdAt: todo.createdAt.toDateString(),
-        updatedAt: todo.updatedAt ? todo.updatedAt.toDateString() : null,
+        createdAt: todo.createdAt.toLocaleString(),
+        updatedAt: todo.updatedAt.toLocaleString(),
+        due: todo.due ? todo.due.toLocaleString() : "",
       })): [];
     } catch (error) {
       console.error(error);
@@ -74,8 +77,9 @@ export const Query: IQuery<Context> = {
         id: todo.id,
         completed: todo.completed,
         title: todo.title,
-        createdAt: todo.createdAt.toDateString(),
-        updatedAt: todo.updatedAt.toDateString()
+        createdAt: todo.createdAt.toLocaleString(),
+        updatedAt: todo.updatedAt.toLocaleString(),
+        due: todo.due ? todo.due.toLocaleString() : "",
       } : null;
     } catch (error) {
       console.error(error);
@@ -92,8 +96,9 @@ export const Query: IQuery<Context> = {
         id: todo.id,
         title: todo.title,
         completed: todo.completed,
-        createdAt: todo.createdAt.toDateString(),
-        updatedAt: todo.updatedAt ? todo.updatedAt.toDateString() : null,
+        createdAt: todo.createdAt.toLocaleString(),
+        updatedAt: todo.updatedAt.toLocaleString(),
+        due: todo.due ? todo.due.toLocaleString() : "",
       })): [];
     } catch (error) {
       console.error(error);

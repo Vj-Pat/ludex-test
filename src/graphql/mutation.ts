@@ -15,10 +15,12 @@ export const Mutation: IMutation<Context> = {
     };
   },
   // Creates a new todo, with the current date
-  createTodo: async (_, { input }, { prisma }) => {
+  createTodo: async (_, { input, due}, { prisma }) => {
+    const newDate = new Date();
     const todo = await prisma.todo.create({
       data: {
         title: input.title,
+        due: due && due.amount ? setDueDate(newDate, due.amount) : undefined
       },
     });
     
@@ -26,8 +28,9 @@ export const Mutation: IMutation<Context> = {
       id: todo.id,
       completed: todo.completed,
       title: todo.title,
-      createdAt: todo.createdAt.toDateString(),
-      updatedAt: todo.updatedAt.toDateString(),
+      createdAt: todo.createdAt.toLocaleString(),
+      updatedAt: todo.updatedAt.toLocaleString(),
+      due: todo.due ? todo.due.toLocaleString() : "",
     };
   },
   //Updates a todo, to set its status from completed to uncompleted
@@ -44,8 +47,9 @@ export const Mutation: IMutation<Context> = {
       id: todo.id,
       completed: todo.completed,
       title: todo.title,
-      createdAt: todo.createdAt.toDateString(),
-      updatedAt: todo.updatedAt.toDateString()
+      createdAt: todo.createdAt.toLocaleString(),
+      updatedAt: todo.updatedAt.toLocaleString(),
+      due: todo.due ? todo.due.toLocaleString() : "",
     }
   },
   //Update the title of a todo
@@ -58,8 +62,9 @@ export const Mutation: IMutation<Context> = {
       id: todo.id,
       completed: todo.completed,
       title: todo.title,
-      createdAt: todo.createdAt.toDateString(),
-      updatedAt: todo.updatedAt.toDateString()
+      createdAt: todo.createdAt.toLocaleString(),
+      updatedAt: todo.updatedAt.toLocaleString(),
+      due: todo.due ? todo.due.toLocaleString() : "",
     }
   },
   // Deletes a todo with an ID
@@ -71,8 +76,16 @@ export const Mutation: IMutation<Context> = {
       id: todo.id,
       completed: todo.completed,
       title: todo.title,
-      createdAt: todo.createdAt.toDateString(),
-      updatedAt: todo.updatedAt.toDateString()
+      createdAt: todo.createdAt.toLocaleString(),
+      updatedAt: todo.updatedAt.toLocaleString(),
+      due: todo.due ? todo.due.toLocaleString() : "",
     }
   },
 };
+
+function setDueDate(
+  newDate: Date,
+  due: number):
+  string | undefined {
+  return new Date(newDate.setDate(newDate.getDate() + due)).toISOString();
+}
