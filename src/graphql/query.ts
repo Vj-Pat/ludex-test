@@ -130,5 +130,31 @@ export const Query: IQuery<Context> = {
       console.error(error);
       return [];
     }
-  }
+  },
+  overdueTodo: async (_, __, { prisma }) => {
+    try {
+      const todos = await prisma.todo.findMany({
+        where : {
+          AND: {
+            completed: false,
+            due: {
+              lte: (new Date()).toISOString(),
+            },
+          },
+        },
+        orderBy : { due: 'asc'}
+      });
+      return todos.length > 0 ? todos.map(todo => ({
+        id: todo.id,
+        title: todo.title,
+        completed: todo.completed,
+        createdAt: todo.createdAt.toLocaleString(),
+        updatedAt: todo.updatedAt.toLocaleString(),
+        due: todo.due ? todo.due.toLocaleString() : "",
+      })): [];
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
+  },
 };
