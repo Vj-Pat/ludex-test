@@ -23,6 +23,8 @@ export const typeDefs = /* GraphQL */ `
     completeTodos(input: CreateDateInput): [Todo]
     todo(input: IdInput!): Todo
     todoByPage(pages: Number, qty: Number): [Todo]
+    upcomingTodo: [Todo]
+    overdueTodo: [Todo]
   }
 
   type Todo {

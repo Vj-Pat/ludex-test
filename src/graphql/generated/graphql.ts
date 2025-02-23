@@ -73,9 +73,11 @@ export type Query = {
   completeTodos?: Maybe<Array<Maybe<Todo>>>;
   hello?: Maybe<Scalars['String']['output']>;
   incompleteTodos?: Maybe<Array<Maybe<Todo>>>;
+  overdueTodo?: Maybe<Array<Maybe<Todo>>>;
   todo?: Maybe<Todo>;
   todoByPage?: Maybe<Array<Maybe<Todo>>>;
   todos?: Maybe<Array<Maybe<Todo>>>;
+  upcomingTodo?: Maybe<Array<Maybe<Todo>>>;
 };
 
 
@@ -229,9 +231,11 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   completeTodos?: Resolver<Maybe<Array<Maybe<ResolversTypes['Todo']>>>, ParentType, ContextType, Partial<QueryCompleteTodosArgs>>;
   hello?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   incompleteTodos?: Resolver<Maybe<Array<Maybe<ResolversTypes['Todo']>>>, ParentType, ContextType>;
+  overdueTodo?: Resolver<Maybe<Array<Maybe<ResolversTypes['Todo']>>>, ParentType, ContextType>;
   todo?: Resolver<Maybe<ResolversTypes['Todo']>, ParentType, ContextType, RequireFields<QueryTodoArgs, 'input'>>;
   todoByPage?: Resolver<Maybe<Array<Maybe<ResolversTypes['Todo']>>>, ParentType, ContextType, Partial<QueryTodoByPageArgs>>;
   todos?: Resolver<Maybe<Array<Maybe<ResolversTypes['Todo']>>>, ParentType, ContextType>;
+  upcomingTodo?: Resolver<Maybe<Array<Maybe<ResolversTypes['Todo']>>>, ParentType, ContextType>;
 };
 
 export type SomethingResolvers<ContextType = any, ParentType extends ResolversParentTypes['Something'] = ResolversParentTypes['Something']> = {
