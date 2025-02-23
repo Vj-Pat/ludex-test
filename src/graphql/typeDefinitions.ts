@@ -17,6 +17,7 @@ export const typeDefs = /* GraphQL */ `
 
   type Query {
     hello: String
+    todos: [Todo]
   }
 
   type Todo {
@@ -24,7 +25,7 @@ export const typeDefs = /* GraphQL */ `
     title: String!
     completed: Boolean!
     createdAt: String!
-    updatedAt: String!
+    updatedAt: String
   }
 
   input CreateTodoInput {
