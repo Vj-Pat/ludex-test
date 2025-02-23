@@ -20,6 +20,7 @@ export const typeDefs = /* GraphQL */ `
     todos: [Todo]
     incompleteTodos: [Todo]
     completeTodos: [Todo]
+    todo(input: UpdateTodoInput!): Todo
   }
 
   type Todo {

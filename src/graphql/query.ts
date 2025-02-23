@@ -52,4 +52,21 @@ export const Query: IQuery<Context> = {
       return [];
     }
   },
+  todo: async (_, { input }, { prisma }) => {
+    try{
+      const todo = await prisma.todo.findFirst({
+        where: {id: input.id}
+      }); 
+      return todo ? {
+        id: todo.id,
+        completed: todo.completed,
+        title: todo.title,
+        createdAt: todo.createdAt.toDateString(),
+        updatedAt: todo.updatedAt.toDateString()
+      } : null;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  },
 };
